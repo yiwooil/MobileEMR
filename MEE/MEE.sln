@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MEE", "MEE\MEE.csproj", "{FD848C50-7191-48E0-96FC-1E5614594029}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MEESetup", "MEESetup\MEESetup.vdproj", "{7DC4E781-3186-4280-A12E-BA38F150C9D7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FD848C50-7191-48E0-96FC-1E5614594029}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD848C50-7191-48E0-96FC-1E5614594029}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD848C50-7191-48E0-96FC-1E5614594029}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD848C50-7191-48E0-96FC-1E5614594029}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DC4E781-3186-4280-A12E-BA38F150C9D7}.Debug|Any CPU.ActiveCfg = Debug
+		{7DC4E781-3186-4280-A12E-BA38F150C9D7}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
