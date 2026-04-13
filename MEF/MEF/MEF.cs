@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -79,7 +80,7 @@ namespace MEF
             lstMsg.Items.Add(DateTime.Now.ToString() + " 다운로드가 완료되었습니다.");
 
             // ---------------------------------------------------------------------------------------------------
-            // 다운로드한 파일을 실행하여 압출을 푼다.(나중에 구현하자...)
+            // 다운로드한 파일을 실행하여 압출을 푼다.
             // ---------------------------------------------------------------------------------------------------
             if (bFileExists == true)
             {
@@ -94,6 +95,23 @@ namespace MEF
                     }
                 }
             }
+
+            // ---------------------------------------------------------------------------------------------------
+            // 적용.bat 실행
+            // ---------------------------------------------------------------------------------------------------
+            string batFile = Path.Combine(currentPathName, "적용.bat");
+            lstMsg.Items.Add(DateTime.Now.ToString() + " 적용실행 " + batFile);
+            ProcessStartInfo psi = new ProcessStartInfo
+            {
+                FileName = batFile, // bat 파일 경로
+                Verb = "runas",               // 관리자 권한 실행
+                UseShellExecute = true,       // 반드시 true
+                WorkingDirectory = currentPathName // 선택 (권장)
+            };
+
+            var process = Process.Start(psi);
+            process.WaitForExit(); // 끝날 때까지 대기
+
         }
 
         private void SetFtpInformation(out String ftpServer, out String ftpUser, out String ftpPwd)
@@ -230,5 +248,7 @@ namespace MEF
                 this.Close();
             }
         }
+
+
     }
 }
