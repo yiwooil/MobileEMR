@@ -15,6 +15,8 @@ using DevExpress.XtraSplashScreen;
 using DevExpress.XtraTreeList;
 using DevExpress.XtraTreeList.Nodes;
 
+using PdfiumViewer;
+
 namespace MEE
 {
     public partial class XtraForm1 : DevExpress.XtraEditors.XtraForm
@@ -713,12 +715,54 @@ namespace MEE
             CSCcfPaper server = new CSCcfPaper();
             if (server.getDataImage(ccfId) == true)
             {
-                Image img = Image.FromFile(server.m_FileName);
-                //MessageBox.Show("w=" + img.Width + ", h=" + img.Height);
-                Image image =(Image)( new Bitmap(img, 800, 1122));
-                //panMain.Width = image.Width;
-                //panMain.Height = image.Height;
-                panMain.BackgroundImage = image;
+                try
+                {
+                    if (panMain.BackgroundImage != null)
+                    {
+                        Image oldImage = panMain.BackgroundImage;
+                        panMain.BackgroundImage = null;
+                        oldImage.Dispose();
+                    }
+                    using (Image img = Image.FromFile(server.m_FileName))
+                    {
+                        //MessageBox.Show("w=" + img.Width + ", h=" + img.Height);
+                        Image image = (Image)(new Bitmap(img, 800, 1122));
+                        //panMain.Width = image.Width;
+                        //panMain.Height = image.Height;
+                        panMain.BackgroundImage = image;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    try
+                    {
+                        if (panMain.BackgroundImage != null)
+                        {
+                            Image oldImage = panMain.BackgroundImage;
+                            panMain.BackgroundImage = null;
+                            oldImage.Dispose();
+                        }
+
+                        using (var document = PdfDocument.Load(server.m_FileName))
+                        {
+                            var size = document.PageSizes[0]; // 문서의 크기를 구한다.
+                            float pdfWidth = size.Width;
+                            float pdfHeight = size.Height;
+
+                            int width = panMain.Width;
+                            int height = (int)(pdfHeight / pdfWidth * width);
+
+                            Image img = document.Render(0, width, height, 96, 96, PdfRenderFlags.Annotations);
+                            panMain.BackgroundImage = img;
+                        }
+                    }
+                    catch (Exception ex1)
+                    {
+                        CloseProgressForm("", "자료조회중입니다.");
+                        MessageBox.Show(ex1.Message);
+                        return;
+                    }
+                }
             }
             else
             {
@@ -726,6 +770,7 @@ namespace MEE
                 MessageBox.Show(server.errorMessage);
                 return;
             }
+
 
             // 동의서 이미지에 출력될 값을 올린다.
             if (server.getDataValue(ccfId) == true)

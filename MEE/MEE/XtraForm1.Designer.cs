@@ -192,7 +192,7 @@
             this.panMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panMain.Location = new System.Drawing.Point(3, 5);
             this.panMain.Name = "panMain";
-            this.panMain.Size = new System.Drawing.Size(439, 388);
+            this.panMain.Size = new System.Drawing.Size(283, 237);
             this.panMain.TabIndex = 5;
             // 
             // lblServer

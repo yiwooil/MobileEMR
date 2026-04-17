@@ -6,7 +6,10 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
+
 using DevExpress.XtraEditors;
+
+using PdfiumViewer;
 
 namespace MEE
 {
@@ -34,7 +37,10 @@ namespace MEE
             try
             {
                 OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = "image files(*.png, *.jpg, *.gif)|*.png;*.jpg;*.gif";
+                dialog.Filter =
+                    "Image files (*.png;*.jpg;*.gif)|*.png;*.jpg;*.gif|" +
+                    "PDF files (*.pdf)|*.pdf|" +
+                    "All files (*.*)|*.*";
                 DialogResult result = dialog.ShowDialog();
                 if (result == DialogResult.Cancel) return;
 
@@ -59,10 +65,28 @@ namespace MEE
                     txtCcfName.Text = Path.GetFileNameWithoutExtension(fileName);
                 }
 
-                FileStream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                Image img = Image.FromFile(fileName);
-                Image image = (Image)(new Bitmap(img, 800, 1122));
-                panBoard.BackgroundImage = image;
+                if (fileName.EndsWith(".pdf"))
+                {
+                    using (var document = PdfDocument.Load(fileName))
+                    {
+                        var size = document.PageSizes[0]; // 문서의 크기를 구한다.
+                        float pdfWidth = size.Width;
+                        float pdfHeight = size.Height;
+
+                        int width = 800;
+                        int height = (int)(pdfHeight / pdfWidth * width);
+
+                        Image img = document.Render(0, width, height, 96, 96, PdfRenderFlags.Annotations);
+                        panBoard.BackgroundImage = img;
+                    }
+                }
+                else
+                {
+                    //FileStream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                    Image img = Image.FromFile(fileName);
+                    Image image = (Image)(new Bitmap(img, 800, 1122));
+                    panBoard.BackgroundImage = image;
+                }
             }
             catch (Exception ex)
             {
