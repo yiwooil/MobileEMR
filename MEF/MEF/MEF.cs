@@ -243,7 +243,7 @@ namespace MEF
 
             btnRun.PerformClick();
 
-            if (MessageBox.Show("종료하시겠습니까?", this.Text, MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show(this, "종료하시겠습니까?", this.Text, MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 this.Close();
             }
