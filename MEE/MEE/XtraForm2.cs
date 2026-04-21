@@ -76,6 +76,9 @@ namespace MEE
                         int width = 800;
                         int height = (int)(pdfHeight / pdfWidth * width);
 
+                        width = (int)pdfWidth;
+                        height = (int)pdfHeight;
+
                         Image img = document.Render(0, width, height, 96, 96, PdfRenderFlags.Annotations);
                         panBoard.BackgroundImage = img;
                     }

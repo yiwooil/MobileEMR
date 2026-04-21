@@ -717,6 +717,9 @@ namespace MEE
             {
                 try
                 {
+                    panMain.Width = 800;
+                    panMain.Height = 1122;
+
                     if (panMain.BackgroundImage != null)
                     {
                         Image oldImage = panMain.BackgroundImage;
@@ -751,6 +754,13 @@ namespace MEE
 
                             int width = panMain.Width;
                             int height = (int)(pdfHeight / pdfWidth * width);
+
+                            width = (int)pdfWidth;
+                            height = (int)pdfHeight;
+
+                            panMain.Width = width;
+                            panMain.Height = height;
+
 
                             Image img = document.Render(0, width, height, 96, 96, PdfRenderFlags.Annotations);
                             panMain.BackgroundImage = img;
