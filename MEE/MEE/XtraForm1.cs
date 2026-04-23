@@ -100,7 +100,7 @@ namespace MEE
             }
 
             String[] btnArray = null;
-            btnArray = new String[] { "pid", "pnm", "resid", "bthdt", "age", "psex", "addr", "htelno", "otelno", "ntelno", "bededt", "qfynm", "ibdyy", "ibdmm", "ibddd", "dptnm", "drnm", "drsign", "logindrnm", "logindrsign", "ward", "wardnm", "rmid", "dxd", "rsvop", "rsvdacd", "rsvopdt", "rsvopdptnm", "rsvopdrnm", "rsvopdt_ymd", "rsvop_2nd", "yy", "mm", "dd", "hhhh", "mmmm", "ssss" };
+            btnArray = new String[] {"pid", "pnm", "resid", "bthdt", "age", "psex", "addr", "htelno", "otelno", "ntelno", "bededt", "qfynm", "ibdyy", "ibdmm", "ibddd", "dptnm", "drnm", "drsign", "logindrnm", "logindrsign", "ward", "wardnm", "rmid", "dxd", "rsvop", "rsvdacd", "rsvopdt", "rsvopdptnm", "rsvopdrnm", "rsvopdt_ymd", "rsvop_2nd", "yy", "mm", "dd", "hhhh", "mmmm", "ssss" };
 
             // 지우고
             xtraScrollableControl2.Controls.Clear();
@@ -309,8 +309,6 @@ namespace MEE
                 btn.Height = 25;
                 btn.Click += new EventHandler(btnItem_Click);
             }
-
-
         }
 
         private void showReadMe()
@@ -797,6 +795,7 @@ namespace MEE
                     label.setText(getFieldText(ccfValues.getField(i)));
                     label.Tag = ccfValues.getField(i);
                     label.autoFit = ccfValues.getAutoFit(i);
+                    label.typeName = ccfValues.getTypeName(i);
                     label.BackColor = Color.Pink;
                     label.Visible = true;
 
@@ -835,7 +834,8 @@ namespace MEE
             txtTop.Text = label.Top.ToString();
             txtWidth.Text = label.Width.ToString();
             txtHeight.Text = label.Height.ToString();
-            txtAutoFit.Text = label.autoFit;
+            chkAutoFit.Checked = label.autoFit == "true";
+            cboTypeName.Text = label.typeName;
         }
 
         void label_MovedResized(object sender, MovedResizedEventArgs e)
@@ -1426,6 +1426,9 @@ namespace MEE
             if (field == "bi_gumak_15") return "비급여 동의서 금액 15";
             if (field == "bi_gumak_tot") return "비급여 동의서 금액 합계";
 
+            // 2026.04.21 WOOIL - PDF 용
+            if (field == "pdf_field") return "pdf필드";
+
             return field;
         }
 
@@ -1470,11 +1473,11 @@ namespace MEE
                 MoveableBorderedLabel label = (MoveableBorderedLabel)ctrl;
                 if (itemString == "")
                 {
-                    itemString = label.Tag + "," + label.Left + "," + label.Top + "," + label.Width + "," + label.Height + "," + label.autoFit;
+                    itemString = label.Tag + "," + label.Left + "," + label.Top + "," + label.Width + "," + label.Height + "," + label.autoFit + "," + label.typeName;
                 }
                 else
                 {
-                    itemString += ":" + label.Tag + "," + label.Left + "," + label.Top + "," + label.Width + "," + label.Height + "," + label.autoFit;
+                    itemString += ":" + label.Tag + "," + label.Left + "," + label.Top + "," + label.Width + "," + label.Height + "," + label.autoFit + "," + label.typeName;
                 }
             }
             return itemString;
@@ -1629,7 +1632,11 @@ namespace MEE
                         }
                         if (kind == "auto_fit")
                         {
-                            ctrl.autoFit = txtAutoFit.Text.ToString();
+                            ctrl.autoFit = chkAutoFit.Checked ? "true" : "";
+                        }
+                        if (kind == "type_name")
+                        {
+                            ctrl.typeName = cboTypeName.Text;
                         }
                     }
                 }
@@ -1640,9 +1647,14 @@ namespace MEE
             }
         }
 
-        private void txtAutoFit_Leave(object sender, EventArgs e)
+        private void chkAutoFit_CheckedChanged(object sender, EventArgs e)
         {
             MoveMyLabel("auto_fit");
+        }
+
+        private void cboTypeName_TextChanged(object sender, EventArgs e)
+        {
+            MoveMyLabel("type_name");
         }
 
 

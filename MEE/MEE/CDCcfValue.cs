@@ -13,8 +13,9 @@ namespace MEE
         private float w;
         private float h;
         private String autoFit;
+        private String typeName;
 
-        public CDCcfValue(String field, float x, float y, float w, float h, String autoFit)
+        public CDCcfValue(String field, float x, float y, float w, float h, String autoFit, String typeName)
         {
             this.field=field;
 		    this.x = x;
@@ -22,6 +23,7 @@ namespace MEE
             this.w = w;
             this.h = h;
             this.autoFit = autoFit;
+            this.typeName = typeName;
 	    }
 
         public String getField()
@@ -50,6 +52,11 @@ namespace MEE
         public String getAutoFit()
         {
             return autoFit;
+        }
+
+        public String getTypeName()
+        {
+            return typeName;
         }
     }
 }

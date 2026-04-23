@@ -12,6 +12,7 @@ namespace MEE
         private Label label;
 
         public String autoFit = ""; // 2024.04.26 WOOIL
+        public String typeName = ""; // 2026.04.21 WOOIL
 
         public MoveableBorderedLabel()
         {

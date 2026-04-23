@@ -75,8 +75,10 @@
             this.simpleButton17 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton18 = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
+            this.chkAutoFit = new System.Windows.Forms.CheckBox();
+            this.cboTypeName = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtAutoFit = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -290,7 +292,7 @@
             this.groupControl2.Controls.Add(this.xtraScrollableControl2);
             this.groupControl2.Location = new System.Drawing.Point(904, 43);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(213, 365);
+            this.groupControl2.Size = new System.Drawing.Size(213, 325);
             this.groupControl2.TabIndex = 14;
             this.groupControl2.Text = "필드";
             // 
@@ -320,7 +322,7 @@
             this.xtraScrollableControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraScrollableControl2.Location = new System.Drawing.Point(2, 22);
             this.xtraScrollableControl2.Name = "xtraScrollableControl2";
-            this.xtraScrollableControl2.Size = new System.Drawing.Size(209, 341);
+            this.xtraScrollableControl2.Size = new System.Drawing.Size(209, 301);
             this.xtraScrollableControl2.TabIndex = 17;
             // 
             // simpleButton20
@@ -568,8 +570,10 @@
             // groupControl3
             // 
             this.groupControl3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupControl3.Controls.Add(this.chkAutoFit);
+            this.groupControl3.Controls.Add(this.cboTypeName);
+            this.groupControl3.Controls.Add(this.label7);
             this.groupControl3.Controls.Add(this.label6);
-            this.groupControl3.Controls.Add(this.txtAutoFit);
             this.groupControl3.Controls.Add(this.label5);
             this.groupControl3.Controls.Add(this.txtName);
             this.groupControl3.Controls.Add(this.label3);
@@ -580,11 +584,52 @@
             this.groupControl3.Controls.Add(this.txtTop);
             this.groupControl3.Controls.Add(this.label1);
             this.groupControl3.Controls.Add(this.txtLeft);
-            this.groupControl3.Location = new System.Drawing.Point(904, 412);
+            this.groupControl3.Location = new System.Drawing.Point(904, 373);
             this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(212, 203);
+            this.groupControl3.Size = new System.Drawing.Size(212, 242);
             this.groupControl3.TabIndex = 18;
             this.groupControl3.Text = "속성";
+            // 
+            // chkAutoFit
+            // 
+            this.chkAutoFit.AutoSize = true;
+            this.chkAutoFit.Location = new System.Drawing.Point(85, 161);
+            this.chkAutoFit.Name = "chkAutoFit";
+            this.chkAutoFit.Size = new System.Drawing.Size(49, 18);
+            this.chkAutoFit.TabIndex = 14;
+            this.chkAutoFit.Text = "true";
+            this.chkAutoFit.UseVisualStyleBackColor = true;
+            this.chkAutoFit.CheckedChanged += new System.EventHandler(this.chkAutoFit_CheckedChanged);
+            // 
+            // cboTypeName
+            // 
+            this.cboTypeName.FormattingEnabled = true;
+            this.cboTypeName.Items.AddRange(new object[] {
+            "",
+            "label",
+            "text",
+            "checkbox",
+            "radio",
+            "combo",
+            "listbox",
+            "image",
+            "button",
+            "signature"});
+            this.cboTypeName.Location = new System.Drawing.Point(78, 184);
+            this.cboTypeName.Name = "cboTypeName";
+            this.cboTypeName.Size = new System.Drawing.Size(120, 22);
+            this.cboTypeName.TabIndex = 13;
+            this.cboTypeName.TextChanged += new System.EventHandler(this.cboTypeName_TextChanged);
+            // 
+            // label7
+            // 
+            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label7.Location = new System.Drawing.Point(11, 183);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 21);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Type";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label6
             // 
@@ -595,14 +640,6 @@
             this.label6.TabIndex = 11;
             this.label6.Text = "Auto Fit";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtAutoFit
-            // 
-            this.txtAutoFit.Location = new System.Drawing.Point(78, 157);
-            this.txtAutoFit.Name = "txtAutoFit";
-            this.txtAutoFit.Size = new System.Drawing.Size(122, 22);
-            this.txtAutoFit.TabIndex = 10;
-            this.txtAutoFit.Leave += new System.EventHandler(this.txtAutoFit_Leave);
             // 
             // label5
             // 
@@ -814,8 +851,10 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtAutoFit;
         private DevExpress.XtraEditors.SimpleButton simpleButton21;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cboTypeName;
+        private System.Windows.Forms.CheckBox chkAutoFit;
 
     }
 }
