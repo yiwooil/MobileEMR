@@ -99,6 +99,7 @@ namespace MEE
                 return;
             }
 
+            /*
             String[] btnArray = null;
             btnArray = new String[] {"pid", "pnm", "resid", "bthdt", "age", "psex", "addr", "htelno", "otelno", "ntelno", "bededt", "qfynm", "ibdyy", "ibdmm", "ibddd", "dptnm", "drnm", "drsign", "logindrnm", "logindrsign", "ward", "wardnm", "rmid", "dxd", "rsvop", "rsvdacd", "rsvopdt", "rsvopdptnm", "rsvopdrnm", "rsvopdt_ymd", "rsvop_2nd", "yy", "mm", "dd", "hhhh", "mmmm", "ssss" };
 
@@ -309,6 +310,7 @@ namespace MEE
                 btn.Height = 25;
                 btn.Click += new EventHandler(btnItem_Click);
             }
+            */
         }
 
         private void showReadMe()
@@ -793,13 +795,13 @@ namespace MEE
                     label.Height = (int)ccfValues.getH(i) > 0 ? (int)ccfValues.getH(i) : 14;
                     label.Width = (int)ccfValues.getW(i) > 0 ? (int)ccfValues.getW(i) : 100;
                     label.setText(getFieldText(ccfValues.getField(i)));
-                    label.Tag = ccfValues.getField(i);
-                    label.autoFit = ccfValues.getAutoFit(i);
-                    label.typeName = ccfValues.getTypeName(i);
+                    label.Field = ccfValues.getField(i);
+                    label.AutoFit = ccfValues.getAutoFit(i);
+                    label.TypeName = ccfValues.getTypeName(i);
                     label.BackColor = Color.Pink;
                     label.Visible = true;
 
-                    string tooltipmsg = getFieldText((string)label.Tag);
+                    string tooltipmsg = getFieldText(label.Field);
                     toolTip1.SetToolTip(label, tooltipmsg);
                     toolTip1.SetToolTip(label.InnerLabel, tooltipmsg);
 
@@ -823,19 +825,23 @@ namespace MEE
         {
             foreach (MoveableBorderedLabel ctrl in panMain.Controls)
             {
+                MoveableBorderedLabel lbl = ctrl as MoveableBorderedLabel;
+                if (lbl == null) continue;
                 ctrl.BackColor = Color.Pink;
             }
 
             MoveableBorderedLabel label = sender as MoveableBorderedLabel;
+            if (label == null) return;
+
             label.BackColor = Color.LightBlue;
             //
-            txtName.Text = label.Tag.ToString();
+            txtName.Text = label.Field;
             txtLeft.Text = label.Left.ToString();
             txtTop.Text = label.Top.ToString();
             txtWidth.Text = label.Width.ToString();
             txtHeight.Text = label.Height.ToString();
-            chkAutoFit.Checked = label.autoFit == "true";
-            cboTypeName.Text = label.typeName;
+            chkAutoFit.Checked = label.AutoFit == "true";
+            cboTypeName.Text = label.TypeName == null ? "" : label.TypeName;
         }
 
         void label_MovedResized(object sender, MovedResizedEventArgs e)
@@ -1135,29 +1141,49 @@ namespace MEE
 
         private void btnItem_Click(object sender, EventArgs e)
         {
+            String nxt_idx_str = "";
+
             SimpleButton btnItem = sender as SimpleButton;
+            // 2026.04.27 WOOIL - 추가한 항목이 PDF 필드이면 pdf_field1, pdf_fiedl2, ... 식으로
+            if (btnItem.Tag.ToString() == "pdf_field")
+            {
+                int max_idx = 0;
+                foreach (Control ctrl in panMain.Controls)
+                {
+                    MoveableBorderedLabel lbl = (MoveableBorderedLabel)ctrl;
+                    if (lbl == null) continue;
+                    if (lbl.Field.StartsWith("pdf_field"))
+                    {
+                        String idxStr = lbl.Field.Replace("pdf_field", "");
+                        int idx = 0;
+                        int.TryParse(idxStr, out idx);
+                        if (idx > max_idx) max_idx = idx;
+                    }
+                }
+                nxt_idx_str = (max_idx + 1).ToString();
+            }
+
+            String fieldText = getFieldText((String)btnItem.Tag + nxt_idx_str);
 
             MoveableBorderedLabel label = new MoveableBorderedLabel();
             label.Left = 100;
             label.Top = 400;
             label.Height = 14;
             label.Width = 100;
-            label.setText(getFieldText((String)btnItem.Tag));
-            label.Tag = btnItem.Tag;
-            label.autoFit = "";
+            label.setText(fieldText);
+            label.Field = btnItem.Tag.ToString() + nxt_idx_str;
+            label.AutoFit = "";
             label.BackColor = Color.Pink;
             label.Visible = true;
 
-            toolTip1.SetToolTip(label, getFieldText((String)btnItem.Tag));
-            toolTip1.SetToolTip(label.InnerLabel, getFieldText((String)btnItem.Tag));
+            toolTip1.SetToolTip(label, fieldText);
+            toolTip1.SetToolTip(label.InnerLabel, fieldText);
 
             label.MovedResized += new MoveableBorderedPanel.MovedResizedHandler(label_MovedResized);
             label.MouseDown += new MouseEventHandler(label_MouseDown);
             label.PreviewKeyDown += new PreviewKeyDownEventHandler(label_PreviewKeyDown);
 
-
-            String labelTag = (String)label.Tag;
-            int width = getItemWidth(labelTag);
+            int width = getItemWidth(label.Field);
             if (width > 0)
             {
                 label.Width = width;
@@ -1427,7 +1453,10 @@ namespace MEE
             if (field == "bi_gumak_tot") return "비급여 동의서 금액 합계";
 
             // 2026.04.21 WOOIL - PDF 용
-            if (field == "pdf_field") return "pdf필드";
+            if (field.StartsWith("pdf_field"))
+            {
+                return "pdf필드" + field.Replace("pdf_field","");
+            }
 
             return field;
         }
@@ -1473,11 +1502,11 @@ namespace MEE
                 MoveableBorderedLabel label = (MoveableBorderedLabel)ctrl;
                 if (itemString == "")
                 {
-                    itemString = label.Tag + "," + label.Left + "," + label.Top + "," + label.Width + "," + label.Height + "," + label.autoFit + "," + label.typeName;
+                    itemString = label.Field + "," + label.Left + "," + label.Top + "," + label.Width + "," + label.Height + "," + label.AutoFit + "," + label.TypeName;
                 }
                 else
                 {
-                    itemString += ":" + label.Tag + "," + label.Left + "," + label.Top + "," + label.Width + "," + label.Height + "," + label.autoFit + "," + label.typeName;
+                    itemString += ":" + label.Field + "," + label.Left + "," + label.Top + "," + label.Width + "," + label.Height + "," + label.AutoFit + "," + label.TypeName;
                 }
             }
             return itemString;
@@ -1607,7 +1636,7 @@ namespace MEE
             {
                 foreach (MoveableBorderedLabel ctrl in panMain.Controls)
                 {
-                    if (ctrl.Tag.ToString() == txtName.Text.ToString())
+                    if (ctrl.Field == txtName.Text.ToString())
                     {
                         int value = 0;
                         if (kind == "left")
@@ -1632,11 +1661,11 @@ namespace MEE
                         }
                         if (kind == "auto_fit")
                         {
-                            ctrl.autoFit = chkAutoFit.Checked ? "true" : "";
+                            ctrl.AutoFit = chkAutoFit.Checked ? "true" : "";
                         }
                         if (kind == "type_name")
                         {
-                            ctrl.typeName = cboTypeName.Text;
+                            ctrl.TypeName = cboTypeName.Text;
                         }
                     }
                 }
@@ -1655,6 +1684,11 @@ namespace MEE
         private void cboTypeName_TextChanged(object sender, EventArgs e)
         {
             MoveMyLabel("type_name");
+        }
+
+        private void cboTypeName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
 

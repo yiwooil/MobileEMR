@@ -614,11 +614,12 @@
             "listbox",
             "image",
             "button",
-            "signature"});
+            "sign"});
             this.cboTypeName.Location = new System.Drawing.Point(78, 184);
             this.cboTypeName.Name = "cboTypeName";
             this.cboTypeName.Size = new System.Drawing.Size(120, 22);
             this.cboTypeName.TabIndex = 13;
+            this.cboTypeName.SelectedIndexChanged += new System.EventHandler(this.cboTypeName_SelectedIndexChanged);
             this.cboTypeName.TextChanged += new System.EventHandler(this.cboTypeName_TextChanged);
             // 
             // label7

@@ -11,8 +11,9 @@ namespace MEE
     {
         private Label label;
 
-        public String autoFit = ""; // 2024.04.26 WOOIL
-        public String typeName = ""; // 2026.04.21 WOOIL
+        public String Field = ""; // 2026.02.47 WOOIL - 필드명(ccf_field)
+        public String AutoFit = ""; // 2024.04.26 WOOIL
+        public String TypeName = ""; // 2026.04.21 WOOIL
 
         public MoveableBorderedLabel()
         {
