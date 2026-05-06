@@ -1144,6 +1144,7 @@ namespace MEE
             String nxt_idx_str = "";
 
             SimpleButton btnItem = sender as SimpleButton;
+
             // 2026.04.27 WOOIL - 추가한 항목이 PDF 필드이면 pdf_field1, pdf_fiedl2, ... 식으로
             if (btnItem.Tag.ToString() == "pdf_field")
             {

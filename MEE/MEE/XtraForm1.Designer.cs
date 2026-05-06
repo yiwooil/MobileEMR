@@ -614,7 +614,8 @@
             "listbox",
             "image",
             "button",
-            "sign"});
+            "sign",
+            "sign_image"});
             this.cboTypeName.Location = new System.Drawing.Point(78, 184);
             this.cboTypeName.Name = "cboTypeName";
             this.cboTypeName.Size = new System.Drawing.Size(120, 22);

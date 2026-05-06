@@ -44,6 +44,7 @@
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnQuery = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.btnLigin = new System.Windows.Forms.Button();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -97,6 +98,7 @@
             this.grdMainView.OptionsSelection.MultiSelect = true;
             this.grdMainView.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             this.grdMainView.OptionsView.ShowGroupPanel = false;
+            this.grdMainView.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always;
             this.grdMainView.DoubleClick += new System.EventHandler(this.grdMainView_DoubleClick);
             this.grdMainView.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.grdMainView_RowCellClick);
             // 
@@ -166,6 +168,7 @@
             this.grdSubView.GridControl = this.grdSub;
             this.grdSubView.Name = "grdSubView";
             this.grdSubView.OptionsView.ShowGroupPanel = false;
+            this.grdSubView.VertScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always;
             // 
             // gridColumn4
             // 
@@ -223,11 +226,21 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // btnLigin
+            // 
+            this.btnLigin.Location = new System.Drawing.Point(248, 12);
+            this.btnLigin.Name = "btnLigin";
+            this.btnLigin.Size = new System.Drawing.Size(75, 23);
+            this.btnLigin.TabIndex = 11;
+            this.btnLigin.Text = "로그인";
+            this.btnLigin.UseVisualStyleBackColor = true;
+            // 
             // MEM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1111, 505);
+            this.Controls.Add(this.btnLigin);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnQuery);
             this.Controls.Add(this.splitContainer1);
@@ -262,6 +275,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnLigin;
     }
 }
 

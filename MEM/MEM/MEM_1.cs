@@ -143,5 +143,38 @@ namespace MEM
                 throw ex;
             }
         }
+
+        private void btnMakeLicenseKeyNo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                txtLicenseKeyNo.Text = MakeLicenseKeyNo();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private string MakeLicenseKeyNo()
+        {
+            const string chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            Random rand = new Random();
+
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < 20; i++)
+            {
+                sb.Append(chars[rand.Next(chars.Length)]);
+
+                if (i == 4 || i == 9 || i == 14)
+                {
+                    sb.Append("-");
+                }
+            }
+
+            return sb.ToString();
+        }
+
     }
 }

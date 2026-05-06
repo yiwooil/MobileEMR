@@ -39,6 +39,7 @@
             this.txtLicenseKeyNo = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
+            this.btnMakeLicenseKeyNo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -54,14 +55,14 @@
             // 
             this.txtHospitalId.Location = new System.Drawing.Point(89, 47);
             this.txtHospitalId.Name = "txtHospitalId";
-            this.txtHospitalId.Size = new System.Drawing.Size(214, 21);
+            this.txtHospitalId.Size = new System.Drawing.Size(236, 21);
             this.txtHospitalId.TabIndex = 1;
             // 
             // txtHospitalName
             // 
             this.txtHospitalName.Location = new System.Drawing.Point(89, 74);
             this.txtHospitalName.Name = "txtHospitalName";
-            this.txtHospitalName.Size = new System.Drawing.Size(214, 21);
+            this.txtHospitalName.Size = new System.Drawing.Size(236, 21);
             this.txtHospitalName.TabIndex = 3;
             // 
             // label2
@@ -77,7 +78,7 @@
             // 
             this.txtServletIp.Location = new System.Drawing.Point(89, 101);
             this.txtServletIp.Name = "txtServletIp";
-            this.txtServletIp.Size = new System.Drawing.Size(214, 21);
+            this.txtServletIp.Size = new System.Drawing.Size(236, 21);
             this.txtServletIp.TabIndex = 5;
             // 
             // label3
@@ -93,7 +94,7 @@
             // 
             this.txtServletIp2.Location = new System.Drawing.Point(89, 128);
             this.txtServletIp2.Name = "txtServletIp2";
-            this.txtServletIp2.Size = new System.Drawing.Size(214, 21);
+            this.txtServletIp2.Size = new System.Drawing.Size(236, 21);
             this.txtServletIp2.TabIndex = 7;
             // 
             // label4
@@ -109,7 +110,7 @@
             // 
             this.txtLicenseKeyNo.Location = new System.Drawing.Point(89, 155);
             this.txtLicenseKeyNo.Name = "txtLicenseKeyNo";
-            this.txtLicenseKeyNo.Size = new System.Drawing.Size(214, 21);
+            this.txtLicenseKeyNo.Size = new System.Drawing.Size(236, 21);
             this.txtLicenseKeyNo.TabIndex = 9;
             // 
             // label5
@@ -131,11 +132,22 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // btnMakeLicenseKeyNo
+            // 
+            this.btnMakeLicenseKeyNo.Location = new System.Drawing.Point(217, 191);
+            this.btnMakeLicenseKeyNo.Name = "btnMakeLicenseKeyNo";
+            this.btnMakeLicenseKeyNo.Size = new System.Drawing.Size(106, 23);
+            this.btnMakeLicenseKeyNo.TabIndex = 11;
+            this.btnMakeLicenseKeyNo.Text = "인증번호 만들기";
+            this.btnMakeLicenseKeyNo.UseVisualStyleBackColor = true;
+            this.btnMakeLicenseKeyNo.Click += new System.EventHandler(this.btnMakeLicenseKeyNo_Click);
+            // 
             // MEM_1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(337, 262);
+            this.ClientSize = new System.Drawing.Size(358, 262);
+            this.Controls.Add(this.btnMakeLicenseKeyNo);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtLicenseKeyNo);
             this.Controls.Add(this.label5);
@@ -167,5 +179,6 @@
         private System.Windows.Forms.TextBox txtLicenseKeyNo;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnMakeLicenseKeyNo;
     }
 }
