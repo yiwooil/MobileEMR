@@ -155,8 +155,9 @@ namespace MEE
                         String ccfValue = (String)dtRow["ccf_value"].GetValue();
                         String ccfAutoFit = (String)dtRow["ccf_auto_fit"].GetValue();
                         String ccfTypeName = (String)dtRow["ccf_type_name"].GetValue();
+                        String ccfGroupName = (String)dtRow["ccf_group_name"].GetValue();
 
-                        m_CcfValues.addCcfValue(ccfField, ccfX, ccfY, ccfW, ccfH, ccfAutoFit, ccfTypeName);
+                        m_CcfValues.addCcfValue(ccfField, ccfX, ccfY, ccfW, ccfH, ccfAutoFit, ccfTypeName, ccfGroupName);
                     }
                     return true;
                 }

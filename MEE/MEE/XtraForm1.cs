@@ -798,6 +798,7 @@ namespace MEE
                     label.Field = ccfValues.getField(i);
                     label.AutoFit = ccfValues.getAutoFit(i);
                     label.TypeName = ccfValues.getTypeName(i);
+                    label.GroupName = ccfValues.getGroupName(i);
                     label.BackColor = Color.Pink;
                     label.Visible = true;
 
@@ -842,6 +843,7 @@ namespace MEE
             txtHeight.Text = label.Height.ToString();
             chkAutoFit.Checked = label.AutoFit == "true";
             cboTypeName.Text = label.TypeName == null ? "" : label.TypeName;
+            txtGroupName.Text = label.GroupName;
         }
 
         void label_MovedResized(object sender, MovedResizedEventArgs e)
@@ -1503,11 +1505,11 @@ namespace MEE
                 MoveableBorderedLabel label = (MoveableBorderedLabel)ctrl;
                 if (itemString == "")
                 {
-                    itemString = label.Field + "," + label.Left + "," + label.Top + "," + label.Width + "," + label.Height + "," + label.AutoFit + "," + label.TypeName;
+                    itemString = label.Field + "," + label.Left + "," + label.Top + "," + label.Width + "," + label.Height + "," + label.AutoFit + "," + label.TypeName + "," + label.GroupName;
                 }
                 else
                 {
-                    itemString += ":" + label.Field + "," + label.Left + "," + label.Top + "," + label.Width + "," + label.Height + "," + label.AutoFit + "," + label.TypeName;
+                    itemString += ":" + label.Field + "," + label.Left + "," + label.Top + "," + label.Width + "," + label.Height + "," + label.AutoFit + "," + label.TypeName + "," + label.GroupName;
                 }
             }
             return itemString;
@@ -1668,6 +1670,10 @@ namespace MEE
                         {
                             ctrl.TypeName = cboTypeName.Text;
                         }
+                        if (kind == "group_name")
+                        {
+                            ctrl.GroupName = txtGroupName.Text;
+                        }
                     }
                 }
             }
@@ -1690,6 +1696,17 @@ namespace MEE
         private void cboTypeName_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtGroupName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != (char)Keys.Enter) return;
+            MoveMyLabel("group_name");
+        }
+
+        private void txtGroupName_Leave(object sender, EventArgs e)
+        {
+            MoveMyLabel("group_name");
         }
 
 

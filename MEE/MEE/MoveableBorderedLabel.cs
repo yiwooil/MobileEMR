@@ -14,6 +14,7 @@ namespace MEE
         public String Field = ""; // 2026.02.47 WOOIL - 필드명(ccf_field)
         public String AutoFit = ""; // 2024.04.26 WOOIL
         public String TypeName = ""; // 2026.04.21 WOOIL
+        public String GroupName = ""; // 2026.05.06 WOOIL
 
         public MoveableBorderedLabel()
         {
@@ -27,17 +28,6 @@ namespace MEE
                 return label;
             }
         }
-        //public int InnerLabelLeft
-        //{
-        //    get
-        //    {
-        //        return label.Left;
-        //    }
-        //    set
-        //    {
-        //        label.Left = value;
-        //    }
-        //}
 
         public int InnerLabelWidth
         {
@@ -67,9 +57,6 @@ namespace MEE
         {
             label.Top = 0;
             label.Left = 0;
-            //int top = (this.Height - label.Height) / 2;
-            //if (top < 0) top = 0;
-            //label.Top = top;
         }
 
         protected override void OnResize(EventArgs e)

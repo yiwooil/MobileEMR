@@ -75,6 +75,8 @@
             this.simpleButton17 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton18 = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtGroupName = new System.Windows.Forms.TextBox();
             this.chkAutoFit = new System.Windows.Forms.CheckBox();
             this.cboTypeName = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -570,6 +572,8 @@
             // groupControl3
             // 
             this.groupControl3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupControl3.Controls.Add(this.label8);
+            this.groupControl3.Controls.Add(this.txtGroupName);
             this.groupControl3.Controls.Add(this.chkAutoFit);
             this.groupControl3.Controls.Add(this.cboTypeName);
             this.groupControl3.Controls.Add(this.label7);
@@ -589,6 +593,25 @@
             this.groupControl3.Size = new System.Drawing.Size(212, 242);
             this.groupControl3.TabIndex = 18;
             this.groupControl3.Text = "속성";
+            // 
+            // label8
+            // 
+            this.label8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label8.Location = new System.Drawing.Point(11, 209);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(65, 21);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "Group";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtGroupName
+            // 
+            this.txtGroupName.Location = new System.Drawing.Point(78, 209);
+            this.txtGroupName.Name = "txtGroupName";
+            this.txtGroupName.Size = new System.Drawing.Size(122, 22);
+            this.txtGroupName.TabIndex = 15;
+            this.txtGroupName.Leave += new System.EventHandler(this.txtGroupName_Leave);
+            this.txtGroupName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGroupName_KeyPress);
             // 
             // chkAutoFit
             // 
@@ -610,10 +633,6 @@
             "text",
             "checkbox",
             "radio",
-            "combo",
-            "listbox",
-            "image",
-            "button",
             "sign",
             "sign_image"});
             this.cboTypeName.Location = new System.Drawing.Point(78, 184);
@@ -857,6 +876,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cboTypeName;
         private System.Windows.Forms.CheckBox chkAutoFit;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtGroupName;
 
     }
 }

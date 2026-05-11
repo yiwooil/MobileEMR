@@ -19,17 +19,17 @@ namespace MEE
 		    m_List.Clear();
 	    }
     	
-	    public void addCcfValue(String field, float x, float y, float w, float h, String autoFit, String typeName){
-		    m_List.Add(new CDCcfValue(field, x, y, w, h, autoFit, typeName));
+	    public void addCcfValue(String field, float x, float y, float w, float h, String autoFit, String typeName, String groupName){
+		    m_List.Add(new CDCcfValue(field, x, y, w, h, autoFit, typeName, groupName));
 	    }
 
-        public void addCcfValue(String field, String x, String y, String w, String h, String autoFit, String typeName)
+        public void addCcfValue(String field, String x, String y, String w, String h, String autoFit, String typeName, String groupName)
         {
 		    float fx = toFloat(x);
             float fy = toFloat(y);
             float fw = toFloat(w);
             float fh = toFloat(h);
-            m_List.Add(new CDCcfValue(field, fx, fy, fw, fh, autoFit, typeName));
+            m_List.Add(new CDCcfValue(field, fx, fy, fw, fh, autoFit, typeName, groupName));
 	    }
     	
 	    public int getCount(){
@@ -81,6 +81,11 @@ namespace MEE
         public String getTypeName(int idx)
         {
             return m_List[idx].getTypeName();
+        }
+
+        public String getGroupName(int idx)
+        {
+            return m_List[idx].getGroupName();
         }
     }
 }
