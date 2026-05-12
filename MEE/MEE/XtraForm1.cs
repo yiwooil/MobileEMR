@@ -1192,6 +1192,8 @@ namespace MEE
                 label.Width = width;
             }
             panMain.Controls.Add(label);
+            label.Focus();
+            label_MouseDown(label, new MouseEventArgs(MouseButtons.Left, 1, 0, 0, 0));
         }
 
         private int getItemWidth(String field)
