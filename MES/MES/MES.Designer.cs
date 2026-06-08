@@ -151,6 +151,7 @@
             this.txtEmrScan.Size = new System.Drawing.Size(468, 21);
             this.txtEmrScan.TabIndex = 10;
             this.txtEmrScan.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtEmrScan.DoubleClick += new System.EventHandler(this.txtEmrScan_DoubleClick);
             // 
             // txtComplusIP
             // 
@@ -173,6 +174,7 @@
             this.txtEmrScanRead.Size = new System.Drawing.Size(516, 21);
             this.txtEmrScanRead.TabIndex = 12;
             this.txtEmrScanRead.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtEmrScanRead.DoubleClick += new System.EventHandler(this.txtEmrScanRead_DoubleClick);
             // 
             // txtNewScanFg
             // 

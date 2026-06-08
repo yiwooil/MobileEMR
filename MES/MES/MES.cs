@@ -184,6 +184,10 @@ namespace MES
                 ModifyXml();
                 AddMsg(" -> 완료" + Environment.NewLine);
                 // --------------------------------------
+                AddMsg("tomcat7w.exe 실행");
+                ExecTomcat7w();
+                AddMsg(" -> 완료" + Environment.NewLine);
+                // --------------------------------------
                 MessageBox.Show(
                     "설치가 완료되었습니다." + Environment.NewLine + Environment.NewLine +
                     "tomcat을 관리자로 로그인해서 재실행하세요.");
@@ -206,7 +210,15 @@ namespace MES
             string exePath = "";
             if (chkTEMURIN.Checked == true)
             {
-                exePath = GetExeDirectory() + "/OpenJDK8U-jdk_x64_windows_hotspot_8u472b08.msi";
+                //exePath = GetExeDirectory() + "/OpenJDK8U-jdk_x64_windows_hotspot_8u472b08.msi";
+                if (txtWin3264.Text.ToString() == "64비트")
+                {
+                    exePath = GetExeDirectory() + "/jre-6u24-windows-x64.exe";
+                }
+                else if (txtWin3264.Text.ToString() == "32비트")
+                {
+                    exePath = GetExeDirectory() + "/jre-6u24-windows-i586.exe";
+                }
             }
             else if (chkJRE.Checked == true)
             {
@@ -240,6 +252,23 @@ namespace MES
             {
                 // 프로그램이 종료될 때까지 대기
                 process.WaitForExit();
+            }
+
+            // 테무린 버전을 추가로 설치한다.
+            if (chkTEMURIN.Checked == true)
+            {
+                exePath = GetExeDirectory() + "/OpenJDK8U-jdk_x64_windows_hotspot_8u472b08.msi";
+                // ProcessStartInfo를 사용해 프로세스 정보 설정
+                ProcessStartInfo psi2 = new ProcessStartInfo();
+                psi2.FileName = exePath;
+                // 필요하다면 psi.Arguments, psi.WorkingDirectory 등 추가 설정 가능
+
+                // 프로세스 시작
+                using (Process process = Process.Start(psi2))
+                {
+                    // 프로그램이 종료될 때까지 대기
+                    process.WaitForExit();
+                }
             }
         }
 
@@ -403,6 +432,23 @@ namespace MES
             File.WriteAllLines(filePath, lines.ToArray());
         }
 
+        private void ExecTomcat7w()
+        {
+            string exePath = txtTomcatFolder.Text.ToString() + "\\bin\\tomcat7w.exe";
+
+            ProcessStartInfo psi = new ProcessStartInfo();
+            psi.FileName = exePath;
+            psi.UseShellExecute = true;
+            psi.Verb = "runas"; // 관리자권한으로 실행
+
+            // 프로세스 시작
+            using (Process process = Process.Start(psi))
+            {
+                // 프로그램이 종료될 때까지 대기
+                process.WaitForExit();
+            }
+        }
+
         private string GetHospitalNo()
         {
             try
@@ -467,6 +513,16 @@ namespace MES
             StringBuilder temp = new StringBuilder(255);
             GetPrivateProfileString(section, key, defaultValue, temp, 255, filePath);
             return temp.ToString();
+        }
+
+        private void txtEmrScan_DoubleClick(object sender, EventArgs e)
+        {
+            txtEmrScan.ReadOnly = !txtEmrScan.ReadOnly;
+        }
+
+        private void txtEmrScanRead_DoubleClick(object sender, EventArgs e)
+        {
+            txtEmrScanRead.ReadOnly = !txtEmrScanRead.ReadOnly;
         }
 
     }
