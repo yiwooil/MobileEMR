@@ -44,6 +44,7 @@
             this.chkJRE = new System.Windows.Forms.CheckBox();
             this.chkTOMCAT = new System.Windows.Forms.CheckBox();
             this.chkTEMURIN = new System.Windows.Forms.CheckBox();
+            this.txtTemurin = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtWin3264
@@ -83,11 +84,11 @@
             this.txtMsg.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMsg.Font = new System.Drawing.Font("굴림체", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.txtMsg.Location = new System.Drawing.Point(12, 206);
+            this.txtMsg.Location = new System.Drawing.Point(12, 231);
             this.txtMsg.Multiline = true;
             this.txtMsg.Name = "txtMsg";
             this.txtMsg.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtMsg.Size = new System.Drawing.Size(516, 266);
+            this.txtMsg.Size = new System.Drawing.Size(516, 241);
             this.txtMsg.TabIndex = 4;
             // 
             // txtMetroHis
@@ -188,8 +189,6 @@
             // chkJRE
             // 
             this.chkJRE.AutoSize = true;
-            this.chkJRE.Checked = true;
-            this.chkJRE.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkJRE.Location = new System.Drawing.Point(106, 12);
             this.chkJRE.Name = "chkJRE";
             this.chkJRE.Size = new System.Drawing.Size(75, 16);
@@ -221,11 +220,24 @@
             this.chkTEMURIN.Text = "Temurin";
             this.chkTEMURIN.UseVisualStyleBackColor = true;
             // 
+            // txtTemurin
+            // 
+            this.txtTemurin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTemurin.Location = new System.Drawing.Point(14, 204);
+            this.txtTemurin.Name = "txtTemurin";
+            this.txtTemurin.ReadOnly = true;
+            this.txtTemurin.Size = new System.Drawing.Size(516, 21);
+            this.txtTemurin.TabIndex = 17;
+            this.txtTemurin.Text = "C:\\Program Files\\Eclipse Adoptium\\jdk-8.0.472.8-hotspot\\jre\\bin\\server\\jvm.dll";
+            this.txtTemurin.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // MES
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(543, 521);
+            this.Controls.Add(this.txtTemurin);
             this.Controls.Add(this.chkTEMURIN);
             this.Controls.Add(this.chkTOMCAT);
             this.Controls.Add(this.chkJRE);
@@ -268,6 +280,7 @@
         private System.Windows.Forms.CheckBox chkJRE;
         private System.Windows.Forms.CheckBox chkTOMCAT;
         private System.Windows.Forms.CheckBox chkTEMURIN;
+        private System.Windows.Forms.TextBox txtTemurin;
     }
 }
 
